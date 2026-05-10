@@ -1,0 +1,133 @@
+Spider.png
+size:2035,1645
+filter:Linear,Linear
+pma:true
+Blinking Layers
+bounds:2,430,426,342
+offsets:0,1,426,343
+L1 leg high
+bounds:1753,889,280,276
+L1 leg lower
+bounds:1405,1407,145,386
+rotate:90
+L1 leg middle
+bounds:2,806,250,379
+rotate:90
+L2 leg high
+bounds:1233,976,236,234
+L2 leg lower
+bounds:552,1430,126,325
+rotate:90
+L2 leg middle
+bounds:318,1058,215,319
+rotate:90
+L3 leg high
+bounds:1765,1167,230,228
+offsets:1,1,232,230
+L3 leg lower
+bounds:879,1427,125,387
+rotate:90
+L3 leg middle
+bounds:2,1117,208,314
+rotate:90
+Monitor
+bounds:970,234,523,378
+offsets:1,1,525,380
+Pc Background Light
+bounds:556,1559,224,84
+offsets:1,1,226,86
+Pc Mesh 1
+bounds:939,1554,223,89
+Pc Mesh 2
+bounds:1164,1554,223,89
+Pc Mesh 3
+bounds:1389,1554,223,89
+Pc Mesh 4
+bounds:1614,1554,223,89
+Pc Mesh 5
+bounds:2,1484,223,89
+Pc Mesh 6
+bounds:227,1474,223,89
+R1 Leg high
+bounds:1471,924,280,273
+R1 Leg lower
+bounds:2,1327,145,386
+rotate:90
+R1 Leg middle
+bounds:383,774,250,379
+rotate:90
+R2 Leg high
+bounds:913,1011,318,231
+R2 Leg lower
+bounds:390,1275,153,368
+offsets:1,1,155,370
+rotate:90
+R2 Leg middle
+bounds:764,744,265,362
+offsets:1,1,267,364
+rotate:90
+R3 leg high
+bounds:639,1026,272,230
+R3 leg lower
+bounds:970,1244,175,345
+rotate:90
+R3 leg middle
+bounds:1128,697,277,324
+rotate:90
+[merge] Leg Joint
+bounds:452,1463,97,98
+rotate:90
+[merge] sad face
+bounds:1547,1199,206,216
+offsets:0,9,206,225
+rotate:90
+abdomen
+bounds:430,392,538,350
+offsets:279,1,821,352
+background neck_
+bounds:1454,614,468,273
+body
+bounds:2,2,761,388
+offsets:1,1,763,390
+default
+bounds:760,1258,208,167
+left ear
+bounds:1268,1421,135,131
+offsets:0,34,364,167
+left ear light
+bounds:2,1575,68,84
+rotate:90
+neck 1
+bounds:256,1565,202,78
+offsets:1,1,204,80
+neck 2
+bounds:1317,1212,228,193
+offsets:1,1,230,195
+neck 3
+bounds:88,1575,68,166
+offsets:1,1,70,168
+rotate:90
+neck 4
+bounds:782,1558,85,155
+offsets:1,1,121,157
+rotate:90
+neck 5
+bounds:1839,1554,89,165
+offsets:1,1,91,167
+rotate:90
+right ear
+bounds:1793,1397,155,169
+offsets:0,1,155,170
+rotate:90
+right ear light
+bounds:460,1562,81,94
+offsets:0,1,81,96
+rotate:90
+
+Spider_2.png
+size:1919,1497
+filter:Linear,Linear
+pma:true
+Background
+bounds:2,2,1915,1493
+offsets:1,1,1917,1495

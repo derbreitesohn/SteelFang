@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ff49dab4773aceb4890f016273a32bd0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerMovement: {instanceID: 0}
+  - settingsPanel: {fileID: 4834281176409121628, guid: b3837e58bc4039c42ac05aa6125b6948, type: 3}
+  - pauseButtonsPanel: {fileID: 6173731943483928931, guid: f9874f3e3a645fb4e802e7cff42ae476, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
