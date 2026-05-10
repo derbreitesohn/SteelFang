@@ -46,7 +46,6 @@ public class MoveLeftAndRight : MonoBehaviour
                 UpdateFacingDirection();
             }
         }
-
         nextPosition.y = startY + Mathf.Sin((Time.time + randomOffset) * waveFrequency) * waveHeight;
         transform.position = nextPosition;
     }

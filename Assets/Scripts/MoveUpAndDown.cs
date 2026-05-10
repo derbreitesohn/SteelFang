@@ -22,7 +22,6 @@ public class MoveUpAndDown : MonoBehaviour
     private void Update()
     {
         Vector3 nextPosition = transform.position;
-
         if (!moveUp)
         {
             nextPosition += Vector3.down * Time.deltaTime * speed;
@@ -41,7 +40,6 @@ public class MoveUpAndDown : MonoBehaviour
                 moveUp = false;
             }
         }
-
         nextPosition.x = startX + Mathf.Sin((Time.time + randomOffset) * waveFrequency) * waveHeight;
         transform.position = nextPosition;
     }
