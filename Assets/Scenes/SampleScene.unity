@@ -897,7 +897,7 @@ Transform:
   m_GameObject: {fileID: 121685734}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.406904, y: -3.39, z: -12}
+  m_LocalPosition: {x: -7.4066505, y: -3.39, z: -12}
   m_LocalScale: {x: 1.07, y: 0.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2008,7 +2008,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.4069047, y: -3.3900003, z: -12}
+  m_LocalPosition: {x: -7.406651, y: -3.3900003, z: -12}
   m_LocalScale: {x: 1.18, y: 1.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11226,6 +11226,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1428109368}
+    - target: {fileID: 8579558355742957880, guid: 8238689f4e7fb0c4486c7918ef0790da, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToMainMenu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
