@@ -981,12 +981,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5764185977474482, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764185977474482, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 508688728776302908, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
       propertyPath: m_Name
       value: MyPlatform (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 508688728776302908, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4484139336741837031, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8839,12 +8847,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5764185977474482, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764185977474482, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 508688728776302908, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
       propertyPath: m_Name
       value: MyPlatform (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 508688728776302908, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4484139336741837031, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9937,12 +9953,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5764185977474482, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764185977474482, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 508688728776302908, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
       propertyPath: m_Name
       value: MyPlatform (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 508688728776302908, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4484139336741837031, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10798,7 +10822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 318069504508435281, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.07
+      value: -1.131
       objectReference: {fileID: 0}
     - target: {fileID: 318069504508435281, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10850,7 +10874,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: wallJumpY
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: pauseMenuUI
@@ -10861,8 +10885,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
+      propertyPath: dashDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: jumpVelocity
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: wallLayer.m_Bits
@@ -10871,6 +10899,10 @@ PrefabInstance:
     - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: doubleJumpCooldown
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
+      propertyPath: jumpAnimationSpeed
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: defaultAnimationSpeed
@@ -10938,7 +10970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4732124529154082265, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.119
+      value: -1.1445
       objectReference: {fileID: 0}
     - target: {fileID: 5334934805609844056, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: m_Interpolate
@@ -10946,7 +10978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5334934805609844056, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: m_GravityScale
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5711816144188987767, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: collectedText
@@ -10978,7 +11010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6064327690645082481, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: groundLayer.m_Bits
-      value: 65
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 6238175797908225222, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: m_SortingOrder
@@ -11026,12 +11058,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5764185977474482, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764185977474482, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 508688728776302908, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
       propertyPath: m_Name
       value: MyPlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 508688728776302908, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4484139336741837031, guid: e2d4c0de9bfa14efb81a3dd6d2c003de, type: 3}
       propertyPath: m_LocalPosition.x

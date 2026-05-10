@@ -114,10 +114,18 @@ public class PlayerMovementController : MonoBehaviour
     private void SetGroundAnimation()
     {
         if (isDashing) return;
-        if (horizontalInput != 0)
-            skeletonAnimation.AnimationState.SetAnimation(0, ANIM_WALK, true);
-        else
-            skeletonAnimation.AnimationState.SetAnimation(0, ANIM_IDLE, true);
+
+        // Figure out which animation we SHOULD be playing
+        string targetAnim = horizontalInput != 0 ? ANIM_WALK : ANIM_IDLE;
+
+        // Check what animation is CURRENTLY playing
+        var currentTrack = skeletonAnimation.AnimationState.GetCurrent(0);
+
+        // ONLY change the animation if it's different from the current one!
+        if (currentTrack == null || currentTrack.Animation.Name != targetAnim)
+        {
+            skeletonAnimation.AnimationState.SetAnimation(0, targetAnim, true);
+        }
     }
 
     private void CheckWallSlide()
@@ -195,6 +203,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (isPaused || isDashing || !value.isPressed) return;
 
+        // WALL JUMP
         if (isTouchingWall && !groundCheck.isGrounded)
         {
             rb.linearVelocity = new Vector2(-wallDirection * wallJumpX, wallJumpY);
@@ -205,11 +214,18 @@ public class PlayerMovementController : MonoBehaviour
             return;
         }
 
-        if (jumpsRemaining > 0 && doubleJumpTimer <= 0)
+        if (jumpsRemaining > 0)
         {
-            float vel = jumpsRemaining < maxJumps ? jumpVelocity * 1.25f : jumpVelocity;
+            bool isFirstJump = (jumpsRemaining == maxJumps);
+            
+            if (!isFirstJump && doubleJumpTimer > 0) return;
+            float vel = isFirstJump ? jumpVelocity : jumpVelocity * 1f;
             jumpsRemaining--;
-            doubleJumpTimer = doubleJumpCooldown;
+
+            if (!isFirstJump)
+            {
+                doubleJumpTimer = doubleJumpCooldown;
+            }
             rb.linearVelocity = new Vector2(rb.linearVelocityX, vel);
             skeletonAnimation.AnimationState.SetAnimation(0, ANIM_JUMP, false);
             skeletonAnimation.timeScale = jumpAnimationSpeed;
