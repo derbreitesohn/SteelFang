@@ -1,19 +1,18 @@
-using System;
 using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-    private int groundCounter;
-    public bool isGrounded => groundCounter > 0;
-    public void OnTriggerEnter2D(Collider2D collission)
+    public bool isGrounded;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private float checkRadius = 0.2f;
+
+    private void FixedUpdate()
     {
-        if(!collission.CompareTag("Ground")) {return;}
-        groundCounter++;
+        isGrounded = Physics2D.OverlapCircle(transform.position, checkRadius, groundLayer);
     }
-    public void OnTriggerExit2D(Collider2D collission)
+    private void OnDrawGizmosSelected()
     {
-        if(!collission.CompareTag("Ground")) {return;}
-        groundCounter = Math.Max(groundCounter -1, 0);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, checkRadius);
     }
 }
-

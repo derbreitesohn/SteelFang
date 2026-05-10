@@ -1836,12 +1836,16 @@ PrefabInstance:
       objectReference: {fileID: 695792435}
     - target: {fileID: 3905807695877515721, guid: b3837e58bc4039c42ac05aa6125b6948, type: 3}
       propertyPath: m_text
-      value: " MOVE        A  D   \r\n\r\n JUMP        SPACE\r\n\r\n PAUSE      
-        ESC"
+      value: " MOVE     A  D   \r\n\r\n JUMP       SPACE\r\n\r\n PAUSE     ESC\n\n
+        DASH      SHIFT"
       objectReference: {fileID: 0}
     - target: {fileID: 4834281176409121628, guid: b3837e58bc4039c42ac05aa6125b6948, type: 3}
       propertyPath: m_Name
       value: SettingsPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834281176409121628, guid: b3837e58bc4039c42ac05aa6125b6948, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

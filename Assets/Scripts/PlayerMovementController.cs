@@ -12,23 +12,23 @@ public class PlayerMovementController : MonoBehaviour
 
     [Header("Double Jump")]
     [SerializeField] private int maxJumps = 2;
+    [SerializeField] private float doubleJumpCooldown = 1f;
+    private float doubleJumpTimer;
     private int jumpsRemaining;
 
-    [Header("Wall Slide & Jump")]
-    [SerializeField] private float wallSlideSpeed = 1.5f;
+    [Header("Wall Jump")]
     [SerializeField] private float wallJumpX = 8f;
     [SerializeField] private float wallJumpY = 14f;
     [SerializeField] private float wallJumpTime = 0.2f;
     [SerializeField] private LayerMask wallLayer;
     private bool isTouchingWall;
-    private bool isWallSliding;
     private float wallJumpTimer;
     private int wallDirection;
 
     [Header("Dash")]
     [SerializeField] private float dashSpeed = 25f;
-    [SerializeField] private float dashDuration = 0.2f;
-    [SerializeField] private float dashCooldown = 1f;
+    [SerializeField] private float dashDuration = 0.3f;
+    [SerializeField] private float dashCooldown = 0.5f;
     private bool isDashing;
     private float dashTimeLeft;
     private float dashCooldownTimer;
@@ -72,16 +72,13 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (isPaused) return;
 
-        // ESC = pause
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             if (isPaused) ResumeGame();
             else PauseGame();
         }
 
-        // DASH — reads Shift directly, no Input Actions needed
-        if ((Keyboard.current.leftShiftKey.wasPressedThisFrame || 
-             Keyboard.current.rightShiftKey.wasPressedThisFrame)
+        if ((Keyboard.current.leftShiftKey.wasPressedThisFrame || Keyboard.current.rightShiftKey.wasPressedThisFrame)
             && !isDashing && dashCooldownTimer <= 0)
         {
             StartDash();
@@ -89,6 +86,7 @@ public class PlayerMovementController : MonoBehaviour
 
         if (dashCooldownTimer > 0) dashCooldownTimer -= Time.deltaTime;
         if (wallJumpTimer > 0) wallJumpTimer -= Time.deltaTime;
+        if (doubleJumpTimer > 0) doubleJumpTimer -= Time.deltaTime;
     }
 
     private void StartDash()
@@ -129,16 +127,9 @@ public class PlayerMovementController : MonoBehaviour
         RaycastHit2D hitLeft  = Physics2D.Raycast(transform.position, Vector2.left,  rayLength, wallLayer);
 
         isTouchingWall = false;
-        if (hitRight.collider != null && horizontalInput > 0) { isTouchingWall = true; wallDirection =  1; }
+        
+        if (hitRight.collider != null && horizontalInput > 0) { isTouchingWall = true; wallDirection = 1; }
         else if (hitLeft.collider != null && horizontalInput < 0) { isTouchingWall = true; wallDirection = -1; }
-
-        isWallSliding = isTouchingWall && !groundCheck.isGrounded && rb.linearVelocityY < 0;
-
-        if (isWallSliding)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocityX, -wallSlideSpeed);
-            jumpsRemaining = 1;
-        }
     }
 
     private void FixedUpdate()
@@ -150,7 +141,6 @@ public class PlayerMovementController : MonoBehaviour
         if (groundCheck.isGrounded && rb.linearVelocityY <= 0.1f)
             jumpsRemaining = maxJumps;
 
-        // DASH movement
         if (isDashing)
         {
             dashTimeLeft -= Time.fixedDeltaTime;
@@ -168,7 +158,6 @@ public class PlayerMovementController : MonoBehaviour
             }
         }
 
-        // Normal movement
         if (wallJumpTimer <= 0)
             rb.linearVelocity = new Vector2(horizontalInput * speed, rb.linearVelocityY);
 
@@ -206,8 +195,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if (isPaused || isDashing || !value.isPressed) return;
 
-        // WALL JUMP
-        if (isWallSliding)
+        if (isTouchingWall && !groundCheck.isGrounded)
         {
             rb.linearVelocity = new Vector2(-wallDirection * wallJumpX, wallJumpY);
             wallJumpTimer = wallJumpTime;
@@ -217,11 +205,11 @@ public class PlayerMovementController : MonoBehaviour
             return;
         }
 
-        // DOUBLE JUMP
-        if (jumpsRemaining > 0)
+        if (jumpsRemaining > 0 && doubleJumpTimer <= 0)
         {
             float vel = jumpsRemaining < maxJumps ? jumpVelocity * 1.25f : jumpVelocity;
             jumpsRemaining--;
+            doubleJumpTimer = doubleJumpCooldown;
             rb.linearVelocity = new Vector2(rb.linearVelocityX, vel);
             skeletonAnimation.AnimationState.SetAnimation(0, ANIM_JUMP, false);
             skeletonAnimation.timeScale = jumpAnimationSpeed;

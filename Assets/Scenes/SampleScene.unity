@@ -709,8 +709,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3905807695877515721, guid: b3837e58bc4039c42ac05aa6125b6948, type: 3}
       propertyPath: m_text
-      value: " MOVE        A  D   \r\n\r\n JUMP        SPACE\r\n\r\n PAUSE      
-        ESC"
+      value: " MOVE     A  D   \r\n\r\n JUMP        SPACE\r\n\r\n PAUSE     ESC\n\n
+        DASH      SHIFT"
       objectReference: {fileID: 0}
     - target: {fileID: 4834281176409121628, guid: b3837e58bc4039c42ac05aa6125b6948, type: 3}
       propertyPath: m_Name
@@ -781,7 +781,7 @@ MonoBehaviour:
   CameraDistance: 12
   DeadZoneDepth: 0
   Composition:
-    ScreenPosition: {x: -0.32, y: 0.29}
+    ScreenPosition: {x: -0.25, y: 0.29}
     DeadZone:
       Enabled: 1
       Size: {x: 0.2, y: 0.2}
@@ -849,7 +849,7 @@ Transform:
   m_GameObject: {fileID: 121685734}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.659667, y: -3.39, z: -12}
+  m_LocalPosition: {x: -7.142597, y: -3.39, z: -12}
   m_LocalScale: {x: 1.07, y: 0.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -868,8 +868,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineConfiner2D
   BoundingShape2D: {fileID: 709175791}
-  Damping: 0.5
-  SlowingDistance: 5
+  Damping: 0.3
+  SlowingDistance: 4
   OversizeWindow:
     Enabled: 0
     MaxWindowSize: 0
@@ -1921,7 +1921,7 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.09
     width: 1
     height: 1
   near clip plane: 0.3
@@ -1953,7 +1953,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.6596665, y: -3.3900003, z: -12}
+  m_LocalPosition: {x: -7.101607, y: -3.3899975, z: -12}
   m_LocalScale: {x: 1.18, y: 1.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1976,7 +1976,7 @@ MonoBehaviour:
   IgnoreTimeScale: 0
   WorldUpOverride: {fileID: 0}
   ChannelMask: -1
-  UpdateMethod: 0
+  UpdateMethod: 2
   BlendUpdateMethod: 1
   LensModeOverride:
     Enabled: 0
@@ -3085,7 +3085,7 @@ GameObject:
   - component: {fileID: 1119657414}
   - component: {fileID: 1119657416}
   - component: {fileID: 1119657415}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -7112,7 +7112,7 @@ CompositeCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -10805,12 +10805,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 555265145512372422, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 555265145512372422, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1209868039872869594, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: m_Name
       value: Spine GameObject (Spider)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209868039872869594, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1271079572107563471, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: m_Size.x
@@ -10837,6 +10845,14 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
+      propertyPath: wallJumpX
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
+      propertyPath: wallJumpY
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 1428109366}
@@ -10845,7 +10861,15 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
+      propertyPath: jumpVelocity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: wallLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
+      propertyPath: doubleJumpCooldown
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1306177537463874141, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
@@ -10916,6 +10940,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.119
       objectReference: {fileID: 0}
+    - target: {fileID: 5334934805609844056, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334934805609844056, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
+      propertyPath: m_GravityScale
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5711816144188987767, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: collectedText
       value: 'Gems: '
@@ -10944,6 +10976,10 @@ PrefabInstance:
       propertyPath: OnCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6064327690645082481, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 65
+      objectReference: {fileID: 0}
     - target: {fileID: 6238175797908225222, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: m_SortingOrder
       value: 0
@@ -10963,6 +10999,10 @@ PrefabInstance:
     - target: {fileID: 8048520984760368557, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8048520984760368557, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8123615792236214761, guid: 129b46b5dd635418e80eafb8c66aca85, type: 3}
       propertyPath: _animationName
