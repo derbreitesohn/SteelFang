@@ -5,7 +5,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private PlayerMovementController playerMovement;
     [SerializeField] private GameObject settingsPanel;
-    [SerializeField] private GameObject pauseButtonsPanel; // drag the panel containing Resume/Settings/Quit buttons
+    [SerializeField] private GameObject pauseButtonsPanel;
 
     public void ResumeGame()
     {
@@ -34,5 +34,14 @@ public class PauseMenu : MonoBehaviour
     {
         if (settingsPanel != null) settingsPanel.SetActive(false);
         if (pauseButtonsPanel != null) pauseButtonsPanel.SetActive(true);
+    }
+
+    public void QuitGame()
+    {
+        Time.timeScale = 1f; 
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }
