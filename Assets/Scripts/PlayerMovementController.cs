@@ -5,18 +5,13 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovementController : MonoBehaviour
 {
-    [Header("Movement")]
     [SerializeField] private float speed = 10f;
     [SerializeField] private float jumpVelocity = 15f;
     [SerializeField] private GroundCheck groundCheck;
-
-    [Header("Double Jump")]
     [SerializeField] private int maxJumps = 2;
     [SerializeField] private float doubleJumpCooldown = 1f;
     private float doubleJumpTimer;
     private int jumpsRemaining;
-
-    [Header("Wall Jump")]
     [SerializeField] private float wallJumpX = 8f;
     [SerializeField] private float wallJumpY = 14f;
     [SerializeField] private float wallJumpTime = 0.2f;
@@ -24,8 +19,6 @@ public class PlayerMovementController : MonoBehaviour
     private bool isTouchingWall;
     private float wallJumpTimer;
     private int wallDirection;
-
-    [Header("Dash")]
     [SerializeField] private float dashSpeed = 25f;
     [SerializeField] private float dashDuration = 0.3f;
     [SerializeField] private float dashCooldown = 0.5f;
@@ -34,12 +27,9 @@ public class PlayerMovementController : MonoBehaviour
     private float dashCooldownTimer;
     private float facingDirection = 1f;
 
-    [Header("Animation")]
     [SerializeField] private SkeletonAnimation skeletonAnimation;
     [SerializeField] private float defaultAnimationSpeed = 1f;
     [SerializeField] private float jumpAnimationSpeed = 2f;
-
-    [Header("Pause")]
     [SerializeField] private GameObject pauseMenuUI;
 
     private Rigidbody2D rb;
@@ -49,7 +39,6 @@ public class PlayerMovementController : MonoBehaviour
     private float airTimeout;
     private bool isPaused = false;
     private float originalGravity;
-
     private const string ANIM_IDLE = "dance";
     private const string ANIM_WALK = "walk cycle";
     private const string ANIM_JUMP = "jump";
@@ -71,19 +60,16 @@ public class PlayerMovementController : MonoBehaviour
     void Update()
     {
         if (isPaused) return;
-
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             if (isPaused) ResumeGame();
             else PauseGame();
         }
-
         if ((Keyboard.current.leftShiftKey.wasPressedThisFrame || Keyboard.current.rightShiftKey.wasPressedThisFrame)
             && !isDashing && dashCooldownTimer <= 0)
         {
             StartDash();
         }
-
         if (dashCooldownTimer > 0) dashCooldownTimer -= Time.deltaTime;
         if (wallJumpTimer > 0) wallJumpTimer -= Time.deltaTime;
         if (doubleJumpTimer > 0) doubleJumpTimer -= Time.deltaTime;
@@ -114,14 +100,8 @@ public class PlayerMovementController : MonoBehaviour
     private void SetGroundAnimation()
     {
         if (isDashing) return;
-
-        // Figure out which animation we SHOULD be playing
         string targetAnim = horizontalInput != 0 ? ANIM_WALK : ANIM_IDLE;
-
-        // Check what animation is CURRENTLY playing
         var currentTrack = skeletonAnimation.AnimationState.GetCurrent(0);
-
-        // ONLY change the animation if it's different from the current one!
         if (currentTrack == null || currentTrack.Animation.Name != targetAnim)
         {
             skeletonAnimation.AnimationState.SetAnimation(0, targetAnim, true);
@@ -133,9 +113,7 @@ public class PlayerMovementController : MonoBehaviour
         float rayLength = 0.7f;
         RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector2.right, rayLength, wallLayer);
         RaycastHit2D hitLeft  = Physics2D.Raycast(transform.position, Vector2.left,  rayLength, wallLayer);
-
         isTouchingWall = false;
-        
         if (hitRight.collider != null && horizontalInput > 0) { isTouchingWall = true; wallDirection = 1; }
         else if (hitLeft.collider != null && horizontalInput < 0) { isTouchingWall = true; wallDirection = -1; }
     }
@@ -143,9 +121,7 @@ public class PlayerMovementController : MonoBehaviour
     private void FixedUpdate()
     {
         if (isPaused) return;
-
         CheckWallSlide();
-
         if (groundCheck.isGrounded && rb.linearVelocityY <= 0.1f)
             jumpsRemaining = maxJumps;
 
@@ -170,7 +146,6 @@ public class PlayerMovementController : MonoBehaviour
             rb.linearVelocity = new Vector2(horizontalInput * speed, rb.linearVelocityY);
 
         if (wasInAir) airTimeout -= Time.fixedDeltaTime;
-
         if (groundCheck.isGrounded && wasInAir && airTimeout <= 0)
         {
             wasInAir = false;
@@ -202,8 +177,6 @@ public class PlayerMovementController : MonoBehaviour
     public void OnJump(InputValue value)
     {
         if (isPaused || isDashing || !value.isPressed) return;
-
-        // WALL JUMP
         if (isTouchingWall && !groundCheck.isGrounded)
         {
             rb.linearVelocity = new Vector2(-wallDirection * wallJumpX, wallJumpY);
@@ -217,7 +190,6 @@ public class PlayerMovementController : MonoBehaviour
         if (jumpsRemaining > 0)
         {
             bool isFirstJump = (jumpsRemaining == maxJumps);
-            
             if (!isFirstJump && doubleJumpTimer > 0) return;
             float vel = isFirstJump ? jumpVelocity : jumpVelocity * 1f;
             jumpsRemaining--;
