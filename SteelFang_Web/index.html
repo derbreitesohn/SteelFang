@@ -115,13 +115,36 @@
         updateBannerVisibility();
       }
 
+      // The build decides whether to show its on-screen control pad by reading
+      // touch=1 / touch=0 off the page URL, so put it there when the user agent
+      // says phone and the URL does not already settle it. Application.absoluteURL
+      // is the one channel into the player that is reliable at any point: config
+      // arguments never reach Environment.GetCommandLineArgs in WebGL, and Unity's
+      // own device sniffing is what we are backstopping here.
+      if (!/[?&]touch=[01]/.test(location.search)
+          && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        var touchUrl = location.pathname
+          + (location.search ? location.search + '&' : '?') + 'touch=1'
+          + location.hash;
+        history.replaceState(null, '', touchUrl);
+      }
+
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/SteelFang_Web.loader.js";
+      // vercel.json serves everything under /Build with
+      // "max-age=31536000, immutable", but the four filenames never change between
+      // builds. A returning player therefore kept last deploy's wasm out of cache for
+      // a year and paired it with a freshly fetched data file, which kills the player
+      // on "memory access out of bounds" before the game starts. Stamping the build's
+      // own content hash onto every URL gives each build its own cache entries, so the
+      // four files can never be mixed across versions. Regenerated on each deploy.
+      var buildVersion = "84b9e8a01902";
+      var v = "?v=" + buildVersion;
+      var loaderUrl = buildUrl + "/SteelFang_Web.loader.js" + v;
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/SteelFang_Web.data.br",
-        frameworkUrl: buildUrl + "/SteelFang_Web.framework.js.br",
-        codeUrl: buildUrl + "/SteelFang_Web.wasm.br",
+        dataUrl: buildUrl + "/SteelFang_Web.data.br" + v,
+        frameworkUrl: buildUrl + "/SteelFang_Web.framework.js.br" + v,
+        codeUrl: buildUrl + "/SteelFang_Web.wasm.br" + v,
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "2DGA",
