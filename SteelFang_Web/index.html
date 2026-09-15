@@ -35,10 +35,11 @@
         align-items: center;
         justify-content: center;
       }
-      /* Lock 960x600 (1.6). flex-shrink was scaling width and height by
-         different amounts, drifting the ratio to ~1.53; the camera then showed
-         more vertical area than the background sprite covers and its clear
-         colour appeared as bands at the top and bottom. */
+      /* Lock the 1.6 display aspect (the canvas renders at 1920x1200).
+         flex-shrink was scaling width and height by different amounts,
+         drifting the ratio to ~1.53; the camera then showed more vertical
+         area than the background sprite covers and its clear colour
+         appeared as bands at the top and bottom. */
       #unity-canvas {
         display: block;
         flex: 0 0 auto;
@@ -83,7 +84,7 @@
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+      <canvas id="unity-canvas" width=1920 height=1200 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
         <div id="unity-progress-bar-empty">
@@ -126,6 +127,17 @@
         productName: "2DGA",
         productVersion: "1.0",
         showBanner: unityShowBanner,
+        // The gameplay Canvas uses Constant Pixel Size, so its HUD (timer, gem
+        // counter, tutorial popups, pause/game-over buttons) is laid out in raw
+        // framebuffer pixels. Unity normally resizes that framebuffer to the CSS
+        // box x devicePixelRatio, so the HUD kept one absolute size while the
+        // view shrank: ~2900px wide on a desktop it looked tiny, ~900px wide on
+        // a phone it swelled until the timer, "10 gems remaining" and the
+        // tutorial text overlapped. Pinning the framebuffer to the canvas'
+        // 1920x1200 attributes makes Screen.width/height constant, so the HUD is
+        // laid out identically everywhere and the CSS letterbox scales it down
+        // with the rest of the game.
+        matchWebGLToCanvasSize: false,
       };
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
