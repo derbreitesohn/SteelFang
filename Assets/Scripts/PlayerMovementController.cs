@@ -73,8 +73,14 @@ public class PlayerMovementController : MonoBehaviour
 
     void Update()
     {
+        // A phone has no physical keyboard, and the on-screen pad's virtual one only
+        // exists while the pad is shown - so Keyboard.current is null there. Reading
+        // through it threw a NullReferenceException on the first frame and every frame
+        // after, which took the rest of Update (dash, pause) down with it.
+        var keyboard = Keyboard.current;
+
         // ESC must be checked BEFORE the isPaused return — otherwise you can never unpause!
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (keyboard != null && keyboard.escapeKey.wasPressedThisFrame)
         {
             if (isPaused) ResumeGame();
             else PauseGame();
@@ -84,8 +90,9 @@ public class PlayerMovementController : MonoBehaviour
         if (isPaused) return;
 
         // Dash — only when grounded
-        if ((Keyboard.current.leftShiftKey.wasPressedThisFrame ||
-             Keyboard.current.rightShiftKey.wasPressedThisFrame)
+        if (keyboard != null
+            && (keyboard.leftShiftKey.wasPressedThisFrame ||
+                keyboard.rightShiftKey.wasPressedThisFrame)
             && !isDashing && dashCooldownTimer <= 0 && groundCheck.isGrounded)
         {
             StartDash();

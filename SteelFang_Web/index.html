@@ -121,8 +121,16 @@
       // is the one channel into the player that is reliable at any point: config
       // arguments never reach Environment.GetCommandLineArgs in WebGL, and Unity's
       // own device sniffing is what we are backstopping here.
-      if (!/[?&]touch=[01]/.test(location.search)
-          && /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      // A user-agent test alone misses real touch devices: iPadOS 13+ reports the
+      // desktop Safari string, so an iPad never got the pad and was left with no way
+      // to move at all. Pair it with a pointer query - a coarse pointer plus touch
+      // points is what a phone or tablet has and a mouse-driven desktop does not,
+      // so a touchscreen laptop still keeps its keyboard.
+      var isTouchDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+        || ((navigator.maxTouchPoints || 0) > 0
+            && window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+
+      if (!/[?&]touch=[01]/.test(location.search) && isTouchDevice) {
         var touchUrl = location.pathname
           + (location.search ? location.search + '&' : '?') + 'touch=1'
           + location.hash;
@@ -137,7 +145,7 @@
       // on "memory access out of bounds" before the game starts. Stamping the build's
       // own content hash onto every URL gives each build its own cache entries, so the
       // four files can never be mixed across versions. Regenerated on each deploy.
-      var buildVersion = "84b9e8a01902";
+      var buildVersion = "b4f2edc24cc0";
       var v = "?v=" + buildVersion;
       var loaderUrl = buildUrl + "/SteelFang_Web.loader.js" + v;
       var config = {
@@ -163,7 +171,7 @@
         matchWebGLToCanvasSize: false,
       };
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      if (isTouchDevice) {
         document.querySelector("#unity-container").className = "unity-mobile";
         canvas.className = "unity-mobile";
       }
